@@ -11,6 +11,9 @@ const PORT = process.env.PORT || 8000;
 const users = require('./api/users');
 const expenses = require('./api/expenses')
 
+const investments = require('./api/investments')
+
+
 // Middleware
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
@@ -27,6 +30,9 @@ app.get('/', (req, res) => {
 // Routes
 app.use('/api/users', users);
 app.use('/api/expenses', expenses);
+
+app.use('/api/investments', investments);
+
 
 
 app.listen(PORT, () => {

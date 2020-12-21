@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 // models 
-const db = require('../models');
+const models = require('../models');
 
 // all comments
 router.get('/all', (req, res) => {

@@ -8,7 +8,7 @@ const passport = require('passport');
 const JWT_SECRET = process.env.JWT_SECRET;
 
 // Models
-const db = require('../models');
+const models = require('../models');
 
 // GET api/users/test (Public)
 
@@ -24,8 +24,8 @@ router.post('/register', (req, res) => {
     console.log('inside of register')
     console.log(req.body);
 
-    console.log(db);
-    db.User.findOne({ email: req.body.email })
+    console.log(models);
+    models.User.findOne({ email: req.body.email })
     .then(user => {
         // if email already exits, send a 400 response
         console.log(user);
@@ -63,7 +63,7 @@ router.post('/login', (req, res) => {
     const password = req.body.password;
 
     // Find a user via email
-    db.User.findOne({ email })
+    models.User.findOne({ email })
     .then(user => {
         // If there is not a user
         console.log(user);

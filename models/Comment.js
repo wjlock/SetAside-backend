@@ -9,4 +9,4 @@ const commentsSchema = new Schema({
     }
 });
 
-module.exports = BlogPost = mongoose.model('Comment', commentsSchema);
+module.exports = Comment = mongoose.model('Comment', commentsSchema);

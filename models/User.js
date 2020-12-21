@@ -39,6 +39,15 @@ const userSchema = new Schema({
     date: {
         type: Date,
         default: Date.now()
+    },
+    investements: {
+        investments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Investment'}]
+    },
+    blogpost: {
+        blogpost: [{type: mongoose.Schema.Types.ObjectId, ref: 'BlogPost'}]
+    },
+    comments: {
+        comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]
     }
 });
 

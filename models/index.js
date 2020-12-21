@@ -21,4 +21,7 @@ db.on('error', (error) => {
 });
 
 module.exports.User = require('./User');
-// module.export.Player = require('./Player');
+module.exports.Comment = require('./Comment');
+module.exports.BlogPost = require('./BlogPost');
+module.exports.Expenses = require('./Expenses');
+module.exports.Investments = require('./Investments');

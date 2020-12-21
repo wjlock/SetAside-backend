@@ -11,62 +11,6 @@ const JWT_SECRET = process.env.JWT_SECRET;
 const db = require('../models');
 
 // GET api/users/test (Public)
-router.post('/test', (req, res) => {
-    console.log('inside of test')
-    console.log(req.body);
-
-    console.log(db);
-    db.User.findOne({ email: req.body.email })
-    .then(user => {
-        // if email already exits, send a 400 response
-        console.log(user);
-        if (user) {
-            return res.status(400).json({ msg: 'Email already exists' });
-        } else {
-            // Create a new user
-            console.log('else statement');
-            const newUser = new User({
-                name: req.body.name,
-                email: req.body.email,
-                password: req.body.password,
-                phone: req.body.phone,
-                income: req.body.income,
-                savings: req.body.savings,
-                current_account_status: req.body.current_account_status,
-                residence: req.body.residence,
-            });
-            // Salt and hash the password, then save the user
-            bcrypt.genSalt(10, (err, salt) => {
-                // if (err) throw Error;
-
-                bcrypt.hash(newUser.password, salt, (error, hash) => {
-                    // if (error) throw Error;
-                    // Change the password in newUser to the hash
-                    newUser.password = hash;
-                    newUser.save()
-                    .then(createdUser => res.json(createdUser))
-                    .catch(err => console.log(err));
-                })
-            })
-        }
-    })
-})
-
-router.post('/commentPost', (req, res) => {
-    db.User.findOne({email: 'johndoe@gmail.com'})
-    .then(john => {
-        const newComment = new Comment({
-            comments: req.body.comment
-        })
-        newComment.save()
-    
-        john.comments.push(newComment)
-        john.save();
-        console.log(john)
-    })
-})
-
-
 
 
 

@@ -3,6 +3,12 @@ const Schema = mongoose.Schema;
 
 // User Schema
 const blogPostSchema = new Schema({
+    content: {
+        type: String
+    },
+    author: {
+        type: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}]
+    },
     comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]
 });
 

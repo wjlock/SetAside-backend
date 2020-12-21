@@ -1,97 +1,97 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-// Expenses Schema
-const expensesSchema = new Schema ({
-    Home: {
-        Rent: {
+// Expense Schema
+const expenseSchema = new Schema ({
+    home: {
+        rent: {
             type: Number
         },
-        Utilities: {
-            Water: {
+        utilities: {
+            water: {
                 type: Number
             },
-            Gas: {
+            gas: {
                 type: Number
             },
-            Electric: {
+            electric: {
                 type: Number
             }
         },
-        Phone: {
+        phone: {
             type: Number
         },
-        Internet: {
+        internet: {
             type: Number
         },
-        Insurance: {
+        insurance: {
             type: Number
         },
-        Repairs: {
+        repairs: {
             type: Number
         },
-        Landscaping: {
+        landscaping: {
             type: Number
         }
     },
-    Daily: {
-        Groceries: {
+    daily: {
+        groceries: {
             type: Number
         },
-        Childcare: {
+        childcare: {
             type: Number
         },
-        Laundry: {
+        laundry: {
             type: Number
         },
-        Restaurants: {
+        restaurants: {
             type: Number
         },
-        Housecleaning: {
+        housecleaning: {
             type: Number
         },
-        Petcare: {
+        petcare: {
             type: Number
         }
     },
-    Transportation: {
-        Gas: {
+    transportation: {
+        gas: {
             type: Number
         },
-        CarInsurance: {
+        carInsurance: {
             type: Number
         },
-        Repairs: {
+        repairs: {
             type: Number
         },
-        Cleaning: {
+        cleaning: {
             type: Number
         },
-        Parking: {
+        parking: {
             type: Number
         },
-        PublicTransport: {
+        publicTransport: {
             type: Number
         },
-        TaxiOrUber: {
+        taxiOrUber: {
             type: Number
         }
     },
-    Entertainment: {
-        Television: {
+    entertainment: {
+        television: {
             type: Number
         },
-        Movies: {
+        movies: {
             type: Number
         },
-        Concert: {
+        concert: {
             type: Number
         },
-        Miscellaneous: {
+        miscellaneous: {
             type: Number
         }
     }
 })
 
 
-module.exports = Expenses = mongoose.model('Expenses', expensesSchema);
+module.exports = Expense = mongoose.model('Expense', expenseSchema);

@@ -40,7 +40,7 @@ const userSchema = new Schema({
         type: Date,
         default: Date.now()
     },
-    investements: 
+    investments: 
         [{type: mongoose.Schema.Types.ObjectId, ref: 'Investment'}]
     ,
     blogpost: 

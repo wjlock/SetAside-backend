@@ -10,14 +10,16 @@ const PORT = process.env.PORT || 8000;
 // API
 const users = require('./api/users');
 const expenses = require('./api/expenses')
-
 const investments = require('./api/investments')
+const comments = require('./api/comments')
+const blogPosts = require('./api/blogPosts')
 
 
 // Middleware
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
 // Initialize Passport and use config file
 app.use(passport.initialize());
 require('./config/passport')(passport);
@@ -30,9 +32,9 @@ app.get('/', (req, res) => {
 // Routes
 app.use('/api/users', users);
 app.use('/api/expenses', expenses);
-
 app.use('/api/investments', investments);
-
+app.use('/api/comments', comments);
+app.use('/api/blogPosts', blogPosts);
 
 
 app.listen(PORT, () => {

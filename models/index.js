@@ -7,7 +7,6 @@ mongoose.connect(process.env.MONGO_URI, {
     useUnifiedTopology: true,
     useFindAndModify: true
 });
-console.log(process.env);
 // Mongoose connection object
 const db = mongoose.connection;
 
@@ -18,7 +17,7 @@ db.once('open', () => {
 });
 
 db.on('error', (error) => {
-    conosle.log(`Database error\n ${error}`);
+    console.log(`Database error\n ${error}`);
 });
 
 module.exports.User = require('./User');

@@ -39,7 +39,7 @@ router.post('/new', (req, res) => {
 
 // PUT route for expenses
 router.put('/:id', (req, res) => { 
-    const { home, rent, utilities, water, gas, electric, phone, internet, insurance, repairs, landscaping, daily, groceries, childcare, laundry, restaurants, housecleaning, petcare, transportation, gas, carInsurance, repairs, cleaning, parking, publicTransport, taxiOrUber, entertainment, television, movies, concert, miscellaneous } = req.body
+    const { home, rent, utilities, water, gasUtility, electric, phone, internet, insurance, homeRepairs, landscaping, daily, groceries, childcare, laundry, restaurants, housecleaning, petcare, transportation, gas, carInsurance, carRepairs, cleaning, parking, publicTransport, taxiOrUber, entertainment, television, movies, concert, miscellaneous } = req.body
     models.Expense.update({
       _id: req.params.id
     }, {$set: {
@@ -47,12 +47,12 @@ router.put('/:id', (req, res) => {
         rent, 
         utilities, 
         water, 
-        gas, 
+        gasUtility, 
         electric, 
         phone, 
         internet, 
         insurance, 
-        repairs, 
+        homeRepairs, 
         landscaping, 
         daily, 
         groceries, 
@@ -64,7 +64,7 @@ router.put('/:id', (req, res) => {
         transportation, 
         gas, 
         carInsurance, 
-        repairs, 
+        carRepairs, 
         cleaning, 
         parking, 
         publicTransport, 

@@ -40,15 +40,15 @@ const userSchema = new Schema({
         type: Date,
         default: Date.now()
     },
-    investments: {
-        investments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Investment'}]
-    },
-    blogpost: {
-        blogpost: [{type: mongoose.Schema.Types.ObjectId, ref: 'BlogPost'}]
-    },
-    comments: {
-        comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]
-    }
+    investments: 
+        [{type: mongoose.Schema.Types.ObjectId, ref: 'Investment'}]
+    ,
+    blogpost: 
+        [{type: mongoose.Schema.Types.ObjectId, ref: 'BlogPost'}]
+    ,
+    comments: 
+        [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]
+    
 });
 
 module.exports = User = mongoose.model('User', userSchema);

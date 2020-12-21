@@ -11,6 +11,10 @@ const JWT_SECRET = process.env.JWT_SECRET;
 const db = require('../models');
 
 // GET api/users/test (Public)
+
+
+
+// TEST ROUTE ABOVE
 router.get('/test', (req, res) => {
     res.json({ msg: 'User endpoint OK!'});
 });
@@ -51,6 +55,7 @@ router.post('/register', (req, res) => {
         }
     })
 })
+
 
 // POST api/users/login (Public)
 router.post('/login', (req, res) => {

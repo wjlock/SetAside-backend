@@ -29,7 +29,7 @@ const userSchema = new Schema({
         required: false
     },
     current_account_status: {
-        type: number,
+        type: Number,
         required: false
     },
     residence: {

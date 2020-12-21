@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-// Expenses Schema
-const expensesSchema = new Schema ({
+// Expense Schema
+const expenseSchema = new Schema ({
     Home: {
         Rent: {
             type: Number
@@ -94,4 +94,4 @@ const expensesSchema = new Schema ({
 })
 
 
-module.exports = Expenses = mongoose.model('Expenses', expensesSchema);
+module.exports = Expense = mongoose.model('Expense', expenseSchema);

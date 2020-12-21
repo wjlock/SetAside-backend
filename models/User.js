@@ -40,12 +40,12 @@ const userSchema = new Schema({
         type: Date,
         default: Date.now()
     },
-    investements: {
-        investments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Investment'}]
-    },
-    blogpost: {
-        blogpost: [{type: mongoose.Schema.Types.ObjectId, ref: 'BlogPost'}]
-    },
+    investements: 
+        [{type: mongoose.Schema.Types.ObjectId, ref: 'Investment'}]
+    ,
+    blogpost: 
+        [{type: mongoose.Schema.Types.ObjectId, ref: 'BlogPost'}]
+    ,
     comments: 
         [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]
     

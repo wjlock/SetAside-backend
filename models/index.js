@@ -24,5 +24,5 @@ db.on('error', (error) => {
 module.exports.User = require('./User');
 module.exports.Comment = require('./Comment');
 module.exports.BlogPost = require('./BlogPost');
-module.exports.Expenses = require('./Expenses');
-module.exports.Investments = require('./Investments');
+module.exports.Expense = require('./Expense');
+module.exports.Investment = require('./Investment');

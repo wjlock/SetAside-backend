@@ -6,6 +6,7 @@ const cors = require('cors');
 const passport = require('passport');
 require('./config/passport')(passport);
 const PORT = process.env.PORT || 8000;
+const rowdy = require('rowdy-logger').begin(app);
 
 // API
 const users = require('./api/users');
@@ -39,4 +40,5 @@ app.use('/api/blogPosts', blogPosts);
 
 app.listen(PORT, () => {
     console.log(`Server is listening 🎧 on port: ${PORT}`);
+    rowdy.print()
 });

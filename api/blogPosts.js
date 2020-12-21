@@ -23,10 +23,27 @@ router.get('/:id', (req, res) => {
 
 // POST api/comments/new (Public)
 router.post('/new', (req, res) => {
-    models.BlogPost.create(req.body).then((blogPost) => {
-      res.status(201).json({ blogPost })
-    })
-    .catch((error) => res.send({ error }))
+  db.User.findOne({_id: req.body.id})
+  // Didn't like working with id
+  .then(user => {
+      db.BlogPost.findOne({title: req.body.title})
+      .then(post => {
+          if (post) {
+              console.log("Post exist with that title")
+          } else {
+              const newPost = new db.BlogPost({
+                  title: req.body.title,
+                  content: req.body.content,
+                  author: user
+              })
+              newPost.save()
+              user.blogpost.push(newPost)
+              user.save();
+              res.status(201).json({ newPost })
+          }
+      })
+  })
+  .catch((error) => res.send({ error }))
 });
 
 // PUT route for expenses

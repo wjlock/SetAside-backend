@@ -16,6 +16,26 @@ const userSchema = new Schema({
         required: true,
         minLength: 8
     },
+    phone: {
+        type: Number,
+        required: false
+    },
+    income: {
+        type: Number,
+        required: false
+    },
+    savings: {
+        type: Number,
+        required: false
+    },
+    current_account_status: {
+        type: number,
+        required: false
+    },
+    residence: {
+        type: String,
+        required: false
+    },
     date: {
         type: Date,
         default: Date.now()

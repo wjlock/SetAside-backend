@@ -56,6 +56,7 @@ router.post('/register', (req, res) => {
     })
 })
 
+
 // POST api/users/login (Public)
 router.post('/login', (req, res) => {
     const email = req.body.email;

@@ -10,6 +10,7 @@ router.get('/expensesTest', (req, res) => {
     res.json({ msg: 'User endpoint OK!'});
 });
 
+
 // all expenses
 router.get('/myExpenses', (req, res) => {
     models.Expense.find().then((foundExpenses) => {
@@ -28,11 +29,13 @@ router.get('/:id', (req, res) => {
 
 // POST api/expenses/new (Public)
 router.post('/new', (req, res) => {
+
     models.Expense.create(req.body).then((expense) => {
       res.status(201).json({ expense })
     })
     .catch((error) => res.send({ error }))
 });
+
 
 // PUT route for expenses
 router.put('/:id', (req, res) => { 
@@ -84,6 +87,7 @@ router.delete('/:id', (req, res) => {
     .then((expense) => res.status(201).json({ expense }))
     .catch((error) => res.send({ error }))
 })
+
 
 
 module.exports = router;

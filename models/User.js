@@ -46,9 +46,9 @@ const userSchema = new Schema({
     blogpost: {
         blogpost: [{type: mongoose.Schema.Types.ObjectId, ref: 'BlogPost'}]
     },
-    comments: {
-        comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]
-    }
+    comments: 
+        [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]
+    
 });
 
 module.exports = User = mongoose.model('User', userSchema);

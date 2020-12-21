@@ -94,4 +94,4 @@ const expensesSchema = new Schema ({
 })
 
 
-module.exports = User = mongoose.model('Expenses', expensesSchema);
+module.exports = Expenses = mongoose.model('Expenses', expensesSchema);

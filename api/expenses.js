@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 // models 
-const db = require('../models');
+const models = require('../models');
 
 // GET api/expenses/test (Public)
 router.get('/expensesTest', (req, res) => {

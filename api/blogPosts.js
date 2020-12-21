@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 // models 
-const db = require('../models');
+const models = require('../models');
 
 // all blog posts
 router.get('/all', (req, res) => {
@@ -23,15 +23,15 @@ router.get('/:id', (req, res) => {
 
 // POST api/comments/new (Public)
 router.post('/new', (req, res) => {
-  db.User.findOne({_id: req.body.id})
+  models.User.findOne({_id: req.body.id})
   // Didn't like working with id
   .then(user => {
-      db.BlogPost.findOne({title: req.body.title})
+      models.BlogPost.findOne({title: req.body.title})
       .then(post => {
           if (post) {
               console.log("Post exist with that title")
           } else {
-              const newPost = new db.BlogPost({
+              const newPost = new models.BlogPost({
                   title: req.body.title,
                   content: req.body.content,
                   author: user

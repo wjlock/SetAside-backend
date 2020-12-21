@@ -6,6 +6,9 @@ const blogPostSchema = new Schema({
     content: {
         type: String
     },
+    title: {
+        type: String
+    },
     author: {
         type: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}]
     },

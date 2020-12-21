@@ -1,185 +1,183 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 // Expense Schema
-const expenseSchema = new Schema ({
-
-    home: {
-        rent: {
-            type: Number
-        },
-        utilities: {
-            water: {
-                type: Number
-            },
-            gas: {
-                type: Number
-            },
-            electric: {
-                type: Number
-            }
-        },
-        phone: {
-            type: Number
-        },
-        internet: {
-            type: Number
-        },
-        insurance: {
-            type: Number
-        },
-        repairs: {
-            type: Number
-        },
-        landscaping: {
-            type: Number
-        }
+const expenseSchema = new Schema({
+  home: {
+    rent: {
+      type: Number,
     },
-    daily: {
-        groceries: {
-            type: Number
-        },
-        childcare: {
-            type: Number
-        },
-        laundry: {
-            type: Number
-        },
-        restaurants: {
-            type: Number
-        },
-        housecleaning: {
-            type: Number
-        },
-        petcare: {
-            type: Number
-        }
+    utilities: {
+      water: {
+        type: Number,
+      },
+      gas: {
+        type: Number,
+      },
+      electric: {
+        type: Number,
+      },
     },
-    transportation: {
-        gas: {
-            type: Number
-        },
-        carInsurance: {
-            type: Number
-        },
-        repairs: {
-            type: Number
-        },
-        cleaning: {
-            type: Number
-        },
-        parking: {
-            type: Number
-        },
-        publicTransport: {
-            type: Number
-        },
-        taxiOrUber: {
-            type: Number
-        }
+    phone: {
+      type: Number,
     },
-    entertainment: {
-        television: {
-            type: Number
-        },
-        movies: {
-            type: Number
-        },
-        concert: {
-            type: Number
-        },
-        miscellaneous: {
-
-    Home: {
+    internet: {
+      type: Number,
+    },
+    insurance: {
+      type: Number,
+    },
+    repairs: {
+      type: Number,
+    },
+    landscaping: {
+      type: Number,
+    },
+  },
+  daily: {
+    groceries: {
+      type: Number,
+    },
+    childcare: {
+      type: Number,
+    },
+    laundry: {
+      type: Number,
+    },
+    restaurants: {
+      type: Number,
+    },
+    housecleaning: {
+      type: Number,
+    },
+    petcare: {
+      type: Number,
+    },
+  },
+  transportation: {
+    gas: {
+      type: Number,
+    },
+    carInsurance: {
+      type: Number,
+    },
+    repairs: {
+      type: Number,
+    },
+    cleaning: {
+      type: Number,
+    },
+    parking: {
+      type: Number,
+    },
+    publicTransport: {
+      type: Number,
+    },
+    taxiOrUber: {
+      type: Number,
+    },
+  },
+  entertainment: {
+    television: {
+      type: Number,
+    },
+    movies: {
+      type: Number,
+    },
+    concert: {
+      type: Number,
+    },
+    miscellaneous: {
+      Home: {
         Rent: {
-            type: Number
+          type: Number,
         },
         Utilities: {
-            Water: {
-                type: Number
-            },
-            Gas: {
-                type: Number
-            },
-            Electric: {
-                type: Number
-            }
+          Water: {
+            type: Number,
+          },
+          Gas: {
+            type: Number,
+          },
+          Electric: {
+            type: Number,
+          },
         },
         Phone: {
-            type: Number
+          type: Number,
         },
         Internet: {
-            type: Number
+          type: Number,
         },
         Insurance: {
-            type: Number
+          type: Number,
         },
         Repairs: {
-            type: Number
+          type: Number,
         },
         Landscaping: {
-            type: Number
-        }
-    },
-    Daily: {
+          type: Number,
+        },
+      },
+      Daily: {
         Groceries: {
-            type: Number
+          type: Number,
         },
         Childcare: {
-            type: Number
+          type: Number,
         },
         Laundry: {
-            type: Number
+          type: Number,
         },
         Restaurants: {
-            type: Number
+          type: Number,
         },
         Housecleaning: {
-            type: Number
+          type: Number,
         },
         Petcare: {
-            type: Number
-        }
-    },
-    Transportation: {
+          type: Number,
+        },
+      },
+      Transportation: {
         Gas: {
-            type: Number
+          type: Number,
         },
         CarInsurance: {
-            type: Number
+          type: Number,
         },
         Repairs: {
-            type: Number
+          type: Number,
         },
         Cleaning: {
-            type: Number
+          type: Number,
         },
         Parking: {
-            type: Number
+          type: Number,
         },
         PublicTransport: {
-            type: Number
+          type: Number,
         },
         TaxiOrUber: {
-            type: Number
-        }
-    },
-    Entertainment: {
+          type: Number,
+        },
+      },
+      Entertainment: {
         Television: {
-            type: Number
+          type: Number,
         },
         Movies: {
-            type: Number
+          type: Number,
         },
         Concert: {
-            type: Number
+          type: Number,
         },
         Miscellaneous: {
- main
-            type: Number
-        }
-    }
-})
+          type: Number,
+        },
+      },
+    },
+  },
+});
 
-
-module.exports = Expense = mongoose.model('Expense', expenseSchema);
+module.exports = Expense = mongoose.model("Expense", expenseSchema);

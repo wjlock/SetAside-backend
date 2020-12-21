@@ -48,10 +48,24 @@ const db = require('./models')
         })
         newComment.save()
         
-        console.log(john)
         john.comments.push(newComment)
         john.save();
-        console.log("comments", john.comments)
-        // console.log(john)
-        console.log(db)
+
+    })
+
+    db.User.findOne({_id: ObjectId("5fe0df307117dd62f19d3c70")})
+    .then(user => {
+        db.BlogPost.findOne({title: "FireTruck"})
+        .then(post => {
+            if (!post) {
+                const newPost = new db.BlogPost({
+                    title: "Fire Truck",
+                    content: "Post about firetrucks",
+                    author: user
+                })
+            }
+        })
+        newPost.save()
+        user.blogpost.push(newPost)
+        user.save();
     })

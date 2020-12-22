@@ -52,6 +52,10 @@ const userSchema = new Schema({
     expenses: 
         [{type: mongoose.Schema.Types.ObjectId, ref: 'Expense'}]
     
+    ,
+    additionalExpenses: 
+        [{type: mongoose.Schema.Types.ObjectId, ref: 'AditionalExpense'}]
+    
 });
 
 module.exports = User = mongoose.model('User', userSchema);

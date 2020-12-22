@@ -26,3 +26,4 @@ module.exports.Comment = require('./Comment');
 module.exports.BlogPost = require('./BlogPost');
 module.exports.Expense = require('./Expense');
 module.exports.Investment = require('./Investment');
+module.exports.AdditionalExpense = require('./AdditionalExpense');

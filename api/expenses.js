@@ -4,6 +4,7 @@ const router = express.Router();
 
 // models
 const models = require("../models");
+const { model } = require("../models/User");
 
 // GET api/expenses/test (Public)
 router.get("/expensesTest", (req, res) => {
@@ -14,7 +15,6 @@ router.get("/expensesTest", (req, res) => {
 router.get("/:id/myExpenses", (req, res) => {
   models.User.findOne({ _id: req.params.id })
     .then((user) => {
-      // res.status(201).json({ user })
       res.send(user.expenses);
     })
     .catch((error) => res.send({ error }));
@@ -30,26 +30,7 @@ router.get("/:id", (req, res) => {
       .then(foundExpense => {
         res.status(200).json({ foundExpense });
       })
-    } else if ("user.expenses".includes(req.body.expenseId)) {
-      models.AdditionalExpense.findOne({ _id: req.body.expenseId})
-      .then(foundExpense => {
-        res.status(200).json({ foundExpense });
-      })
-    } else if ("user.expenses".includes(req.body.expenseId)) {
-      models.DailyExpense.findOne({ _id: req.body.expenseId})
-      .then(foundExpense => {
-        res.status(200).json({ foundExpense });
-      })
-    } else if ("user.expenses".includes(req.body.expenseId)) {
-      models.EntertainmentExpense.findOne({ _id: req.body.expenseId})
-      .then(foundExpense => {
-        res.status(200).json({ foundExpense });
-      })
-    } else if ("user.expenses".includes(req.body.expenseId)) {
-      models.TransportationExpense.findOne({ _id: req.body.expenseId})
-      .then(foundExpense => {
-        res.status(200).json({ foundExpense });
-      })
+ 
     } else {
       res.send({msg: "User does not have that expense"})
     }
@@ -62,21 +43,30 @@ router.get("/:id", (req, res) => {
 });
 
 // POST api/expenses/new (Public)
-router.post("/additionalexpense", (req, res) => {
+router.post("/new", (req, res) => {
   models.User.findOne({ _id: req.body.id })
     .then((user) => {
-      models.AdditionalExpense.findOne({
-        "expense.name": req.body.expenseName,
-      }).then((foundExpense) => {
-        if (foundExpense) {
+      models.Expense.findOne({
+        "category.name" : req.body.name,
+      }).then((foundExpenseName) => {
+        let expenseName = foundExpenseName.category.name
+
+        if (expenseName === req.body.name) {
+          // Can narrowed down further to narrow by category name and amount ect
+          // Could say if category and name are equal to req.body category and name then that
+          // expense already exist
           res.send({ msg: "expense already exist for this user" });
         } else {
-          const newExpense = new models.AdditionalExpense({
-            "expense.name": req.body.expenseName,
-            "expense.amount": req.body.amount,
+          const newExpense = new models.Expense({
+            category: req.body.category,
+            "category.name": req.body.name,
+            "category.amount": req.body.amount,
+            "category.day": req.body.day,
+            "category.month": req.body.month,
+            "category.year": req.body.year
           });
           newExpense.save();
-          user.additionalExpenses.push(newExpense);
+          user.expenses.push(newExpense);
           user.save();
           // res.status(201).json({ newExpense })
           res.send({ newExpense });
@@ -86,98 +76,19 @@ router.post("/additionalexpense", (req, res) => {
     .catch((error) => res.send({ error }));
 });
 
-router.post("/new", (req, res) => {
-  // let expenseName = req.body.expenseName
-  let values = req.body.amount
-  models.User.findOne({ _id: req.body.id })
-  .then(user => {
-    const newExpense = new models.Expense({
-      "daily.grocieries" : values,
-      "home.rent" : values
-    })
-  })
-})
-
 // // PUT route for expenses
-// router.put("/:id", (req, res) => {
-//   const {
-//     home,
-//     rent,
-//     utilities,
-//     water,
-//     gasUtility,
-//     electric,
-//     phone,
-//     internet,
-//     insurance,
-//     homeRepairs,
-//     landscaping,
-//     daily,
-//     groceries,
-//     childcare,
-//     laundry,
-//     restaurants,
-//     housecleaning,
-//     petcare,
-//     transportation,
-//     gas,
-//     carInsurance,
-//     carRepairs,
-//     cleaning,
-//     parking,
-//     publicTransport,
-//     taxiOrUber,
-//     entertainment,
-//     television,
-//     movies,
-//     concert,
-//     miscellaneous,
-//   } = req.body;
-//   models.Expense.update(
-//     {
-//       _id: req.params.id
-//     },
-//     {
-//       $set: {
-//         home,
-//         rent,
-//         utilities,
-//         water,
-//         gasUtility,
-//         electric,
-//         phone,
-//         internet,
-//         insurance,
-//         homeRepairs,
-//         landscaping,
-//         daily,
-//         groceries,
-//         childcare,
-//         laundry,
-//         restaurants,
-//         housecleaning,
-//         petcare,
-//         transportation,
-//         gas,
-//         carInsurance,
-//         carRepairs,
-//         cleaning,
-//         parking,
-//         publicTransport,
-//         taxiOrUber,
-//         entertainment,
-//         television,
-//         movies,
-//         concert,
-//         miscellaneous,
-//       },
-//     }
-//   )
-//     .then((expense) => {
-//       res.status(201).json({ expense });
-//     })
-//     .catch((error) => res.send({ error }));
-// });
+router.put("/:id", (req, res) => {
+  const { expense } = req.body
+  models.Expense.update({
+    _id: req.params.id
+  }, {$set: {
+      comments
+  }})
+  .then((comment) => {
+    res.status(201).json({ comment })
+  })
+  .catch((error) => res.send({ error }))
+});
 
 // // delete
 // router.delete("/:id", (req, res) => {

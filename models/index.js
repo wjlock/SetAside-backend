@@ -27,3 +27,7 @@ module.exports.BlogPost = require('./BlogPost');
 module.exports.Expense = require('./Expense');
 module.exports.Investment = require('./Investment');
 module.exports.AdditionalExpense = require('./AdditionalExpense');
+module.exports.DailyExpense = require('./DailyExpense');
+module.exports.EntertainmentExpense = require('./EntertainmentExpense');
+module.exports.HomeExpense = require('./HomeExpense');
+module.exports.TransportationExpense = require('./TransportationExpense');

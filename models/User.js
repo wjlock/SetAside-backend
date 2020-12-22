@@ -50,11 +50,13 @@ const userSchema = new Schema({
         [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]
     ,
     expenses: 
-        [{type: mongoose.Schema.Types.ObjectId, ref: 'Expense'}]
-    
+        [{type: mongoose.Schema.Types.ObjectId, ref: 'DailyExpense'}]
+        [{type: mongoose.Schema.Types.ObjectId, ref: 'EntertainmentExpense'}]
+        [{type: mongoose.Schema.Types.ObjectId, ref: 'HomeExpense'}]
+        [{type: mongoose.Schema.Types.ObjectId, ref: 'TransportationExpense'}]
     ,
     additionalExpenses: 
-        [{type: mongoose.Schema.Types.ObjectId, ref: 'AditionalExpense'}]
+        [{type: mongoose.Schema.Types.ObjectId, ref: 'AdditionalExpense'}]
     
 });
 

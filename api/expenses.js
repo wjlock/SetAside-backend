@@ -10,24 +10,56 @@ router.get("/expensesTest", (req, res) => {
   res.json({ msg: "User endpoint OK!" });
 });
 
-// // Find a user and then their expenses
-// router.get("/:id/myExpenses", (req, res) => {
-//   models.User.findOne({ _id: req.params.id })
-//     .then((user) => {
-//       // res.status(201).json({ user })
-//       res.send(user.expenses);
-//     })
-//     .catch((error) => res.send({ error }));
-// });
+// Find a user and then their expenses
+router.get("/:id/myExpenses", (req, res) => {
+  models.User.findOne({ _id: req.params.id })
+    .then((user) => {
+      // res.status(201).json({ user })
+      res.send(user.expenses);
+    })
+    .catch((error) => res.send({ error }));
+});
 
-// // get by Id
-// router.get("/:id", (req, res) => {
-//   models.Expense.findOne({ _id: req.params.id })
-//     .then((expense) => {
-//       res.status(200).json({ expense });
-//     })
-//     .catch((error) => res.send({ error }));
-// });
+// get by Id
+router.get("/:id", (req, res) => {
+  models.User.findOne({ _id: req.params.id})
+  .then(user => {
+    console.log(user.expenses)
+    if ("user.expenses".includes(req.body.expenseId)){
+      models.HomeExpense.findOne({ _id: req.body.expenseId})
+      .then(foundExpense => {
+        res.status(200).json({ foundExpense });
+      })
+    } else if ("user.expenses".includes(req.body.expenseId)) {
+      models.AdditionalExpense.findOne({ _id: req.body.expenseId})
+      .then(foundExpense => {
+        res.status(200).json({ foundExpense });
+      })
+    } else if ("user.expenses".includes(req.body.expenseId)) {
+      models.DailyExpense.findOne({ _id: req.body.expenseId})
+      .then(foundExpense => {
+        res.status(200).json({ foundExpense });
+      })
+    } else if ("user.expenses".includes(req.body.expenseId)) {
+      models.EntertainmentExpense.findOne({ _id: req.body.expenseId})
+      .then(foundExpense => {
+        res.status(200).json({ foundExpense });
+      })
+    } else if ("user.expenses".includes(req.body.expenseId)) {
+      models.TransportationExpense.findOne({ _id: req.body.expenseId})
+      .then(foundExpense => {
+        res.status(200).json({ foundExpense });
+      })
+    } else {
+      res.send({msg: "User does not have that expense"})
+    }
+  })
+  // models.Expense.findOne({ _id: req.params.id })
+  //   .then((expense) => {
+  //     res.status(200).json({ expense });
+  //   })
+  //   .catch((error) => res.send({ error }));
+});
 
 // POST api/expenses/new (Public)
 router.post("/additionalexpense", (req, res) => {

@@ -22,6 +22,7 @@ router.get("/:id/myExpenses", (req, res) => {
 
 // get by Id
 router.get("/:id", (req, res) => {
+  // Needs work as well!!
   models.User.findOne({ _id: req.params.id})
   .then(user => {
     console.log(user.expenses)
@@ -35,11 +36,7 @@ router.get("/:id", (req, res) => {
       res.send({msg: "User does not have that expense"})
     }
   })
-  // models.Expense.findOne({ _id: req.params.id })
-  //   .then((expense) => {
-  //     res.status(200).json({ expense });
-  //   })
-  //   .catch((error) => res.send({ error }));
+    .catch((error) => res.send({ error }));
 });
 
 // POST api/expenses/new (Public)
@@ -82,10 +79,10 @@ router.put("/:id", (req, res) => {
   models.Expense.update({
     _id: req.params.id
   }, {$set: {
-      comments
+      // Need to think about this, what's being updated what should remain the same using set
   }})
-  .then((comment) => {
-    res.status(201).json({ comment })
+  .then((expense) => {
+    res.status(201).json({ expense })
   })
   .catch((error) => res.send({ error }))
 });

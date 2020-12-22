@@ -12,11 +12,17 @@ router.get('/expensesTest', (req, res) => {
 
 
 // all expenses
-router.get('/myExpenses', (req, res) => {
-    models.Expense.find().then((foundExpenses) => {
-      res.status(200).json({ expenses: foundExpenses })
-    })
-    .catch((error) => res.send({ error }))
+router.get('/:id/myExpenses', (req, res) => {
+  models.User.findOne({_id: req.params.id})
+  .then(user => {
+    res.status(200).json({ user })
+    res.send({ user })
+  })
+  // Find a user and then their expenses
+    // models.Expense.find().then((foundExpenses) => {
+    //   res.status(200).json({ expenses: foundExpenses })
+    // })
+    // .catch((error) => res.send({ error }))
 })
 
 // get by Id

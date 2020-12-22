@@ -90,7 +90,7 @@ const expenseSchema = new Schema({
     miscellaneous: {
       type: String
     },
-    },
+    }
 })
 
 module.exports = Expense = mongoose.model("Expense", expenseSchema);

@@ -24,7 +24,6 @@ router.get('/:id', (req, res) => {
 // POST api/comments/new (Public)
 router.post('/new', (req, res) => {
   models.User.findOne({_id: req.body.id})
-  // Didn't like working with id
   .then(user => {
       models.BlogPost.findOne({title: req.body.title})
       .then(post => {
@@ -40,6 +39,7 @@ router.post('/new', (req, res) => {
               user.blogpost.push(newPost)
               user.save();
               res.status(201).json({ newPost })
+              res.send({ newPost })
           }
       })
   })

@@ -23,7 +23,7 @@ router.get('/:id', (req, res) => {
 
 // POST api/comments/new (Public)
 router.post('/new', (req, res) => {
-    models.Comment.create(req.body).then((comment) => {
+    models.Comment.create(req.body.comments).then((comment) => {
       res.status(201).json({ comment })
     })
     .catch((error) => res.send({ error }))

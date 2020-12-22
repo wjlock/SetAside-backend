@@ -48,6 +48,9 @@ const userSchema = new Schema({
     ,
     comments: 
         [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]
+    ,
+    expenses: 
+        [{type: mongoose.Schema.Types.ObjectId, ref: 'Expense'}]
     
 });
 

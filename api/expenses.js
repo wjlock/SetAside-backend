@@ -40,8 +40,13 @@ router.get("/:id", (req, res) => {
 });
 
 // POST api/expenses/new (Public)
+// use req.user
 router.post("/new", (req, res) => {
+<<<<<<< HEAD
   console.log("users", req.user)
+=======
+  console.log(req.body)
+>>>>>>> 446b3b8c1b46184d4ae2b3bed0eb126d9153b3e0
   models.User.findOne({ _id: req.body.id })
     .then((user) => {
       models.Expense.findOne({

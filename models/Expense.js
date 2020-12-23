@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 // User Schema
 const expenseSchema = new Schema({
-  expense: {
+  category: {
     name: { type: String, required: true },
     amount: { type: Number, required: true },
     day: { type: Number, required: true },
@@ -14,5 +14,5 @@ const expenseSchema = new Schema({
 
 module.exports = Expense = mongoose.model(
   "Expense",
-  ExpenseSchema
+  expenseSchema
 );

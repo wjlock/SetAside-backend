@@ -41,13 +41,18 @@ router.get("/:id", (req, res) => {
 
 // POST api/expenses/new (Public)
 router.post("/new", (req, res) => {
+  console.log("users", req.user)
   models.User.findOne({ _id: req.body.id })
     .then((user) => {
       models.Expense.findOne({
         name : req.body.name,
         category: req.body.category
       }).then((foundExpense) => {
-        if (foundExpense) {
+        console.log(user.expenses)
+        console.log(foundExpense)
+        // console.log(`ObjectId("${foundExpense._id}")`)
+        console.log(user.expenses.includes(`ObjectId("${foundExpense._id}")`))
+        if (user.expenses.includes(`ObjectId("${foundExpense._id}")`)) {
           res.send({ msg: "expense already exist for this user" });
         } else {
           const newExpense = new models.Expense({
@@ -69,18 +74,24 @@ router.post("/new", (req, res) => {
 });
 
 // // PUT route for expenses
-router.put("/:id", (req, res) => {
-  const { expense } = req.body
-  models.Expense.update({
-    _id: req.params.id
-  }, {$set: {
-      // Need to think about this, what's being updated what should remain the same using set
-  }})
-  .then((expense) => {
-    res.status(201).json({ expense })
-  })
-  .catch((error) => res.send({ error }))
-});
+router.put('/:id', (req, res) => { 
+  // const { expense } = req.body
+  models.Expense.findOneAndUpdate(
+    {_id: req.params.id}, 
+    {category: req.body.category, 
+      name: req.body.name, 
+      amount: req.body.amount, 
+      day: req.body.day, 
+      month: req.body.month, 
+      year: req.body.year}, (err, doc) => {
+        if (err) {
+          res.send({ msg: "Something went wrong in one of the fields" });
+        } else {
+          res.send({ newExpense });
+        }
+      }
+    )}
+);
 
 // // delete
 // router.delete("/:id", (req, res) => {

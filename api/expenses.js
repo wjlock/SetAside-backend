@@ -47,10 +47,7 @@ router.post("/new", (req, res) => {
         name : req.body.name,
         category: req.body.category
       }).then((foundExpense) => {
-        console.log(foundExpense)
-
-      
-        if (foundExpense.category === req.body.category && foundExpense.name === req.body.name) {
+        if (foundExpense) {
           res.send({ msg: "expense already exist for this user" });
         } else {
           const newExpense = new models.Expense({

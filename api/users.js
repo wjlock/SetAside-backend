@@ -1,4 +1,3 @@
-require('dotenv').config();
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
@@ -6,7 +5,6 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const JWT_SECRET = process.env.JWT_SECRET;
-console.log(process.env);
 // Load User model
 // const User = require('../../models/User');
 const db = require('../models');
@@ -81,6 +79,7 @@ router.post('/login', (req, res) => {
       });
     }
   });
+  // console.log(req.user)
 });
 
 // GET api/users/current (Private)

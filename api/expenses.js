@@ -45,8 +45,9 @@ router.get("/:id", (req, res) => {
 
 // POST api/expenses/new (Public)
 router.post("/new", passport.authenticate('jwt', { session: false }), (req, res) => {
-  console.log(req.headers.authorization)
-  console.log("req.user", req.user)
+  console.log(req.body)
+  // console.log(req.headers.authorization)
+  // console.log("req.user", req.user)
   models.User.findOne({ _id: req.user.id })
     .then((user) => {
       models.Expense.findOne({
@@ -54,12 +55,12 @@ router.post("/new", passport.authenticate('jwt', { session: false }), (req, res)
         category: req.body.category
       })
           const newExpense = new models.Expense({
-            category: req.body.category,
-            name: req.body.name,
-            amount: req.body.amount,
-            day: req.body.day,
-            month: req.body.month,
-            year: req.body.year
+            category: req.body.data.category,
+            name: req.body.data.name,
+            amount: req.body.data.amount,
+            day: req.body.data.day,
+            month: req.body.data.month,
+            year: req.body.data.year
           });
           newExpense.save();
           user.expenses.push(newExpense);

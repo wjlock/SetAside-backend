@@ -28,7 +28,32 @@ router.post('/register', (req, res) => {
       const newUser = new User({
         name: req.body.name,
         email: req.body.email,
-        password: req.body.password
+        password: req.body.password,
+        phoneNumber: req.body.phoneNumber,
+        income: req.body.income,
+        savings_goal: req.body.savings_goal,
+        current_account_status: req.body.current_account_status,
+        mortgageOrRent: req.body.mortgageOrRent,
+        utilities: req.body.utilities,
+        phone: req.body.phone,
+        internet: req.body.internet,
+        insurance: req.body.insurance,
+        groceries: req.body.groceries,
+        child_care: req.body.child_care,
+        dry_cleaning: req.body.dry_cleaning,
+        house_cleaning: req.body.house_cleaning,
+        pet_care: req.body.pet_care,
+        gas: req.body.gas,
+        car_insurance: req.body.car_insurance,
+        repairs: req.body.repairs,
+        parking: req.body.parking,
+        public_transportation: req.body.public_transportation,
+        taxiOrUber: req.body.taxiOrUber,
+        cable: req.body.cable,
+        movies: req.body.movies,
+        concerts: req.body.concerts,
+        misc: req.body.misc
+
       });
 
       // Salt and hash the password, then save the user

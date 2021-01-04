@@ -46,8 +46,6 @@ router.get("/:id", (req, res) => {
 // POST api/expenses/new (Public)
 router.post("/new", passport.authenticate('jwt', { session: false }), (req, res) => {
   console.log(req.body)
-  // console.log(req.headers.authorization)
-  // console.log("req.user", req.user)
   models.User.findOne({ _id: req.user.id })
     .then((user) => {
       models.Expense.findOne({
@@ -70,21 +68,9 @@ router.post("/new", passport.authenticate('jwt', { session: false }), (req, res)
     )
     .catch((error) => res.send({ error }));
 });
-// models.User.findOne({ _id: req.user.id })
-//   .then((user) => {
-//     models.Expense.findOne({
-//       name: req.body.name,
-//       category: req.body.category
-//     }).then((foundExpense) => {
-//       if (!foundExpense) {
-
-//       }
-//     })
-//   })
 
 // // PUT route for expenses
 router.put('/:id', (req, res) => { 
-  // const { expense } = req.body
   models.Expense.findOneAndUpdate(
     {_id: req.params.id}, 
     {category: req.body.category, 

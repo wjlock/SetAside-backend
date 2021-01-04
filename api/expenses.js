@@ -62,14 +62,7 @@ router.post("/new", passport.authenticate('jwt', { session: false }), (req, res)
       models.Expense.findOne({
         name : req.body.name,
         category: req.body.category
-      }).then((foundExpense) => {
-        // console.log('user.Expenses', user.expenses)
-        // console.log('foundExpense', foundExpense)
-        // console.log(`ObjectId("${foundExpense._id}")`)
-          if (foundExpense) {
-          console.log(user.expenses.includes(`ObjectId("${foundExpense._id}")`))
-          res.send({ msg: "expense already exist for this user with that name and category" });
-        } else {
+      })
           const newExpense = new models.Expense({
             category: req.body.category,
             name: req.body.name,
@@ -83,8 +76,7 @@ router.post("/new", passport.authenticate('jwt', { session: false }), (req, res)
           user.save();
           res.send({ newExpense });
         }
-    })
-  })
+    )
     .catch((error) => res.send({ error }));
 });
 // models.User.findOne({ _id: req.user.id })

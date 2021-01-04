@@ -54,7 +54,72 @@ const userSchema = new Schema({
     ,
     additionalExpenses: 
         [{type: mongoose.Schema.Types.ObjectId, ref: 'AdditionalExpense'}]
-    
+    ,
+    budget: {
+        rent: {
+            type: Number
+        },
+        utilities: {
+            type: Number
+        },
+        phone: {
+            type: Number
+        },
+        internet: {
+            type: Number
+        },
+        insurance: {
+            type: Number
+        },
+        groceries: {
+            type: Number
+        },
+        childCare: {
+            type: Number
+        },
+        dryCleaning: {
+            type: Number
+        },
+        houseCleaning: {
+            type: Number
+        },
+        petCare: {
+            type: Number
+        },
+        gas: {
+            type: Number
+        },
+        carInsurance: {
+            type: Number
+        },
+        carRepairs: {
+            type: Number
+        },
+        carWash: {
+            type: Number
+        },
+        parking: {
+            type: Number
+        },
+        publicTransportation: {
+            type: Number
+        },
+        rideShare: {
+            type: Number
+        },
+        television: {
+            type: Number
+        },
+        movies: {
+            type: Number
+        },
+        concerts: {
+            type: Number
+        },
+        miscellaneous: {
+            type: Number
+        }
+    }
 });
 
 module.exports = User = mongoose.model('User', userSchema);

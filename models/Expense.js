@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 // User Schema
 const expenseSchema = new Schema({
-  category: { type: String, required: true },
+    category: { type: String, required: true },
     name: { type: String, required: true },
     amount: { type: Number, required: true },
     day: { type: Number, required: true },

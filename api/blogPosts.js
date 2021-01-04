@@ -1,6 +1,7 @@
 // imports
 const express = require('express');
 const router = express.Router();
+const passport = require('passport');
 
 // models 
 const models = require('../models');
@@ -44,6 +45,7 @@ router.post('/new', (req, res) => {
       })
   })
   .catch((error) => res.send({ error }))
+  // console.log(req.user)
 });
 
 // PUT route for expenses

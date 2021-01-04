@@ -1,28 +1,46 @@
 // imports
 const express = require("express");
 const router = express.Router();
+const passport = require('passport');
 
 // models
 const models = require("../models");
 const { model } = require("../models/User");
 
 // GET api/expenses/test (Public)
-router.get("/expensesTest", (req, res) => {
+router.get("/expensesTest",(req, res, next) => {
+  console.log(req.headers)
+  next()
+}, passport.authenticate('jwt', { session: false }), (req, res) => {
+  console.log("req.headers", req.headers)
+  console.log("req.user", req.user)
   res.json({ msg: "User endpoint OK!" });
 });
 
 // Find a user and then their expenses
 router.get("/:id/myExpenses", (req, res) => {
-  models.User.findOne({ _id: req.params.id })
+  let expensesList = []     
+  models.User.findOne({ _id: req.user.id })
     .then((user) => {
-      res.send(user.expenses);
+      user.expenses.forEach(expense => {
+        console.log(expense)
+        models.Expense.findOne({})
+        // ({ _id: `"${expense}"`})
+        // .then((ExpenseDetails) => {
+        //   expensesList.push(ExpenseDetails)
+        // })
+        
+      });
+      res.send(expensesList);
     })
     .catch((error) => res.send({ error }));
 });
 
 // get by Id
-router.get("/:id", (req, res) => {
+router.get("/:id",passport.authenticate('jwt', { session: false }), (req, res) => {
   // Needs work as well!!
+
+
   models.User.findOne({ _id: req.params.id})
   .then(user => {
     console.log(user.expenses)
@@ -41,8 +59,9 @@ router.get("/:id", (req, res) => {
 
 // POST api/expenses/new (Public)
 // use req.user
-router.post("/new", (req, res) => {
-  console.log(req.body)
+router.post("/new", passport.authenticate('jwt', { session: false }), (req, res) => {
+  console.log(req.headers.authorization)
+  console.log("req.user", req.user)
   models.User.findOne({ _id: req.body.id })
     .then((user) => {
       models.Expense.findOne({

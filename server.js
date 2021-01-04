@@ -22,7 +22,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // Initialize Passport and use config file
-app.use(passport.initialize());
+app.use(passport.initialize()); 
+// app.use(passport.authenticate('jwt', { session: false })) // This is the line pete gave us for req.user access
 require('./config/passport')(passport);
 
 // Home route

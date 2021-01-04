@@ -1,7 +1,6 @@
 // imports
 const express = require("express");
 const router = express.Router();
-const passport = require('passport');
 
 // models
 const models = require("../models");
@@ -19,22 +18,13 @@ router.get("/:id/myExpenses", passport.authenticate('jwt', { session: false }),(
   let expensesList = []     
   models.User.findOne({ _id: req.user.id })
     .then((user) => {
-      user.expenses.forEach(expense => {
-        console.log(expense)
-        models.Expense.findOne({})
-        // ({ _id: `"${expense}"`})
-        // .then((ExpenseDetails) => {
-        //   expensesList.push(ExpenseDetails)
-        // })
-        
-      });
-      res.send(expensesList);
+      res.send(user.expenses);
     })
     .catch((error) => res.send({ error }));
 });
 
 // get by Id
-router.get("/:id",passport.authenticate('jwt', { session: false }), (req, res) => {
+router.get("/:id", (req, res) => {
   // Needs work as well!!
   models.User.findOne({ _id: req.user.id})
   .then(user => {

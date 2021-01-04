@@ -53,7 +53,6 @@ router.get("/:id",passport.authenticate('jwt', { session: false }), (req, res) =
 });
 
 // POST api/expenses/new (Public)
-// use req.user
 router.post("/new", passport.authenticate('jwt', { session: false }), (req, res) => {
   console.log(req.headers.authorization)
   console.log("req.user", req.user)
@@ -111,11 +110,12 @@ router.put('/:id', (req, res) => {
     )}
 );
 
-// // delete
-// router.delete("/:id", (req, res) => {
-//   models.Expense.deleteOne({ _id: req.params.id })
-//     .then((expense) => res.status(201).json({ expense }))
-//     .catch((error) => res.send({ error }));
-// });
+// delete
+router.delete("/:id", (req, res) => {
+  // Questions on if this is fine or if me and front end need to work together
+  models.Expense.deleteOne({ _id: req.params.id })
+    .then((expense) => res.status(201).json({ expense }))
+    .catch((error) => res.send({ error }));
+});
 
 module.exports = router;

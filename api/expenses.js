@@ -26,9 +26,9 @@ router.get("/:id/myExpenses", passport.authenticate('jwt', { session: false }),(
 // get by Id
 router.get("/:id", (req, res) => {
   // Needs work as well!!
-  models.User.findOne({ _id: req.params.id})
+  models.User.findOne({ _id: req.user.id})
   .then(user => {
-    console.log(user.expenses)
+    // console.log(user.expenses)
     if ("user.expenses".includes(req.body.expenseId)){
       models.HomeExpense.findOne({ _id: req.body.expenseId})
       .then(foundExpense => {
@@ -44,21 +44,15 @@ router.get("/:id", (req, res) => {
 
 // POST api/expenses/new (Public)
 // use req.user
-router.post("/new", (req, res) => {
-  console.log(req.body)
-  models.User.findOne({ _id: req.body.id })
+router.post("/new", passport.authenticate('jwt', { session: false }), (req, res) => {
+  console.log(req.headers.authorization)
+  console.log("req.user", req.user)
+  models.User.findOne({ _id: req.user.id })
     .then((user) => {
       models.Expense.findOne({
         name : req.body.name,
         category: req.body.category
-      }).then((foundExpense) => {
-        console.log(user.expenses)
-        console.log(foundExpense)
-        // console.log(`ObjectId("${foundExpense._id}")`)
-        console.log(user.expenses.includes(`ObjectId("${foundExpense._id}")`))
-        if (user.expenses.includes(`ObjectId("${foundExpense._id}")`)) {
-          res.send({ msg: "expense already exist for this user" });
-        } else {
+      })
           const newExpense = new models.Expense({
             category: req.body.category,
             name: req.body.name,
@@ -72,10 +66,20 @@ router.post("/new", (req, res) => {
           user.save();
           res.send({ newExpense });
         }
-    })
-  })
+    )
     .catch((error) => res.send({ error }));
 });
+// models.User.findOne({ _id: req.user.id })
+//   .then((user) => {
+//     models.Expense.findOne({
+//       name: req.body.name,
+//       category: req.body.category
+//     }).then((foundExpense) => {
+//       if (!foundExpense) {
+
+//       }
+//     })
+//   })
 
 // // PUT route for expenses
 router.put('/:id', (req, res) => { 

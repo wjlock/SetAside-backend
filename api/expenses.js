@@ -8,17 +8,14 @@ const models = require("../models");
 const { model } = require("../models/User");
 
 // GET api/expenses/test (Public)
-router.get("/expensesTest",(req, res, next) => {
-  console.log(req.headers)
-  next()
-}, passport.authenticate('jwt', { session: false }), (req, res) => {
+router.get("/expensesTest",(req, res) => {
   console.log("req.headers", req.headers)
   console.log("req.user", req.user)
   res.json({ msg: "User endpoint OK!" });
 });
 
 // Find a user and then their expenses
-router.get("/:id/myExpenses", (req, res) => {
+router.get("/:id/myExpenses", passport.authenticate('jwt', { session: false }),(req, res) => {
   let expensesList = []     
   models.User.findOne({ _id: req.user.id })
     .then((user) => {

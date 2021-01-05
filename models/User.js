@@ -109,7 +109,7 @@ const userSchema = new Schema({
   },
   miscellaneous: {
     type: Number,
-  },
+  }
 });
 
 userSchema.statics.getExpenses = async function (expenseIds) {

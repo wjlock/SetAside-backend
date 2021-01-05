@@ -104,7 +104,6 @@ router.post('/login', (req, res) => {
       });
     }
   });
-  // console.log(req.user)
 });
 
 // GET api/users/current (Private)
@@ -112,7 +111,32 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
   res.json({
     id: req.user.id,
     name: req.user.name,
-    email: req.user.email
+    email: req.user.email,
+    phoneNumber: req.body.phoneNumber,
+    income: req.body.income,
+    savings: req.body.savings,
+    residence: req.body.residence,
+    rent: req.body.rent,
+    utilities: req.body.utilities,
+    phone: req.body.phone,
+    internet: req.body.internet,
+    insurance: req.body.insurance,
+    groceries: req.body.groceries,
+    childCare: req.body.childCare,
+    dryCleaning: req.body.dryCleaning,
+    houseCleaning: req.body.houseCleaning,
+    petCare: req.body.petCare,
+    gas: req.body.gas,
+    carInsurance: req.body.carInsurance,
+    carRepairs: req.body.carRepairs,
+    carWash: req.body.carWash,
+    parking: req.body.parking,
+    publicTransportation: req.body.publicTransportation,
+    rideShare: req.body.rideShare,
+    television: req.body.television,
+    movies: req.body.movies,
+    concerts: req.body.concerts,
+    miscellaneous: req.body.miscellaneous
   });
 });
 

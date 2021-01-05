@@ -97,18 +97,18 @@ router.put("/:id", (req, res) => {
   models.Expense.findOneAndUpdate(
     { _id: req.params.id },
     {
-      category: req.body.category,
-      name: req.body.name,
-      amount: req.body.amount,
-      day: req.body.day,
-      month: req.body.month,
-      year: req.body.year,
+      category: req.body.data.category,
+      name: req.body.data.name,
+      amount: req.body.data.amount,
+      day: req.body.data.day,
+      month: req.body.data.month,
+      year: req.body.data.year
     },
     (err, doc) => {
       if (err) {
         res.send({ msg: "Something went wrong in one of the fields" });
       } else {
-        res.send({ newExpense });
+        res.send({ msg: "Saved successfully" });
       }
     }
   );
@@ -116,6 +116,7 @@ router.put("/:id", (req, res) => {
 
 // delete
 router.delete("/:id", (req, res) => {
+  console.log(req.params.id)
   // Questions on if this is fine or if me and front end need to work together
   models.Expense.deleteOne({ _id: req.params.id })
     .then((expense) => res.status(201).json({ expense }))

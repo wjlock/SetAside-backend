@@ -1,3 +1,0 @@
-MONGO_URI="mongodb://127.0.0.1:27017/SetAside"
-JWT_SECRET='thisismysecret'
-PORT=8000

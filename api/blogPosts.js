@@ -29,7 +29,7 @@ router.post('/new', (req, res) => {
       models.BlogPost.findOne({title: req.body.title})
       .then(post => {
           if (post) {
-              console.log("Post exist with that title")
+            res.json({ msg: "Post exist with that title" });
           } else {
               const newPost = new models.BlogPost({
                   title: req.body.title,
@@ -45,7 +45,6 @@ router.post('/new', (req, res) => {
       })
   })
   .catch((error) => res.send({ error }))
-  // console.log(req.user)
 });
 
 // PUT route for expenses

@@ -9,8 +9,6 @@ const { model } = require("../models/User");
 
 // GET api/expenses/test (Public)
 router.get("/expensesTest", (req, res) => {
-  console.log("req.headers", req.headers);
-  console.log("req.user", req.user);
   res.json({ msg: "User endpoint OK!" });
 });
 
@@ -23,7 +21,6 @@ router.get(
     models.User.findOne({ _id: req.user.id })
       .populate("expenses")
       .then((user) => {
-        console.log(user);
         res.send(user.expenses);
       })
       .catch((error) => res.send({ error }));
@@ -35,7 +32,6 @@ router.get("/:id", (req, res) => {
   // Needs work as well!!
   models.User.findOne({ _id: req.user.id })
     .then((user) => {
-      // console.log(user.expenses)
       if ("user.expenses".includes(req.body.expenseId)) {
         models.HomeExpense.findOne({ _id: req.body.expenseId }).then(
           (foundExpense) => {
@@ -54,9 +50,6 @@ router.post(
   "/new",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    console.log(req.body);
-    // console.log(req.headers.authorization)
-    // console.log("req.user", req.user)
     models.User.findOne({ _id: req.user.id })
       .then((user) => {
         models.Expense.findOne({
